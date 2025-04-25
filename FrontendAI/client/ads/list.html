@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 广告列表</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/data-grid.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/themes/client-theme.css">
+    <link rel="stylesheet" href="ads.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/dashboard">控制台</a></li>
+                            <li class="active"><a href="/ads/list">广告管理</a></li>
+                            <li><a href="/finance/recharge">财务管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">广告主名称</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">个人资料</a></li>
+                                <li><a href="/settings">账户设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>广告列表</h1>
+                    <a href="/ads/create" class="btn btn-primary">创建广告</a>
+                </div>
+
+                <!-- 筛选和搜索 -->
+                <div class="filter-section">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索广告名称..." class="form-control">
+                        <button class="btn btn-primary">搜索</button>
+                    </div>
+                    <div class="filter-options">
+                        <select class="form-control">
+                            <option value="">所有状态</option>
+                            <option value="pending">待审核</option>
+                            <option value="approved">已通过</option>
+                            <option value="rejected">已拒绝</option>
+                            <option value="running">投放中</option>
+                            <option value="paused">已暂停</option>
+                        </select>
+                        <select class="form-control">
+                            <option value="">所有类型</option>
+                            <option value="banner">横幅广告</option>
+                            <option value="video">视频广告</option>
+                            <option value="popup">弹窗广告</option>
+                        </select>
+                        <button class="btn">重置</button>
+                    </div>
+                </div>
+
+                <!-- 广告列表 -->
+                <div class="ad-list">
+                    <table class="data-grid">
+                        <thead>
+                            <tr>
+                                <th>广告名称</th>
+                                <th>类型</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>展示量</th>
+                                <th>点击量</th>
+                                <th>点击率</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="ad-info">
+                                        <img src="../../public/images/ads/sample1.jpg" alt="广告预览" class="ad-preview">
+                                        <div class="ad-details">
+                                            <h4>夏季促销活动</h4>
+                                            <p>活动时间: 2024-06-01 至 2024-08-31</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>横幅广告</td>
+                                <td><span class="status running">投放中</span></td>
+                                <td>2024-05-15</td>
+                                <td>10,234</td>
+                                <td>256</td>
+                                <td>2.5%</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm">编辑</button>
+                                        <button class="btn btn-sm">暂停</button>
+                                        <button class="btn btn-sm">分析</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ad-info">
+                                        <img src="../../public/images/ads/sample2.jpg" alt="广告预览" class="ad-preview">
+                                        <div class="ad-details">
+                                            <h4>新品上市推广</h4>
+                                            <p>活动时间: 2024-05-20 至 2024-06-20</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>视频广告</td>
+                                <td><span class="status pending">待审核</span></td>
+                                <td>2024-05-18</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm">编辑</button>
+                                        <button class="btn btn-sm">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ad-info">
+                                        <img src="../../public/images/ads/sample3.jpg" alt="广告预览" class="ad-preview">
+                                        <div class="ad-details">
+                                            <h4>品牌形象广告</h4>
+                                            <p>活动时间: 2024-04-01 至 2024-12-31</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>弹窗广告</td>
+                                <td><span class="status paused">已暂停</span></td>
+                                <td>2024-04-01</td>
+                                <td>5,678</td>
+                                <td>123</td>
+                                <td>2.2%</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm">编辑</button>
+                                        <button class="btn btn-sm">继续投放</button>
+                                        <button class="btn btn-sm">分析</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="btn" disabled>上一页</button>
+                    <span class="page-info">第 1 页，共 5 页</span>
+                    <button class="btn">下一页</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../../common/js/libs/chart.js"></script>
+    <script src="list.js"></script>
+</body>
+</html> 

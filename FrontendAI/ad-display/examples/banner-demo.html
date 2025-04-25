@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>横幅广告示例</title>
+    <link rel="stylesheet" href="../dist/styles/banner.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+        }
+
+        .demo-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .demo-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .demo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .demo-item {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .demo-item-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .code-block {
+            background: #f6f8fa;
+            padding: 16px;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .ad-container {
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-section">
+        <h1 class="demo-title">横幅广告示例</h1>
+        <p class="demo-description">
+            展示不同尺寸和样式的横幅广告效果
+        </p>
+
+        <!-- 小尺寸横幅广告 -->
+        <div class="demo-item">
+            <h2 class="demo-item-title">小尺寸横幅广告</h2>
+            <div class="ad-container">
+                <div class="ad-container ad-banner size-small">
+                    <div class="ad-banner">
+                        <img src="https://via.placeholder.com/300x150" alt="示例广告">
+                        <h3>示例广告标题</h3>
+                        <p>这是一段示例广告描述文本</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">
+                <pre><code>&lt;div class="ad-container ad-banner size-small"&gt;
+    &lt;div class="ad-banner"&gt;
+        &lt;img src="广告图片URL" alt="广告标题"&gt;
+        &lt;h3&gt;广告标题&lt;/h3&gt;
+        &lt;p&gt;广告描述文本&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- 中尺寸横幅广告 -->
+        <div class="demo-item">
+            <h2 class="demo-item-title">中尺寸横幅广告</h2>
+            <div class="ad-container">
+                <div class="ad-container ad-banner size-medium">
+                    <div class="ad-banner">
+                        <img src="https://via.placeholder.com/600x300" alt="示例广告">
+                        <h3>示例广告标题</h3>
+                        <p>这是一段示例广告描述文本</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">
+                <pre><code>&lt;div class="ad-container ad-banner size-medium"&gt;
+    &lt;div class="ad-banner"&gt;
+        &lt;img src="广告图片URL" alt="广告标题"&gt;
+        &lt;h3&gt;广告标题&lt;/h3&gt;
+        &lt;p&gt;广告描述文本&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- 大尺寸横幅广告 -->
+        <div class="demo-item">
+            <h2 class="demo-item-title">大尺寸横幅广告</h2>
+            <div class="ad-container">
+                <div class="ad-container ad-banner size-large">
+                    <div class="ad-banner">
+                        <img src="https://via.placeholder.com/900x450" alt="示例广告">
+                        <h3>示例广告标题</h3>
+                        <p>这是一段示例广告描述文本</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">
+                <pre><code>&lt;div class="ad-container ad-banner size-large"&gt;
+    &lt;div class="ad-banner"&gt;
+        &lt;img src="广告图片URL" alt="广告标题"&gt;
+        &lt;h3&gt;广告标题&lt;/h3&gt;
+        &lt;p&gt;广告描述文本&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- 深色主题横幅广告 -->
+        <div class="demo-item">
+            <h2 class="demo-item-title">深色主题横幅广告</h2>
+            <div class="ad-container">
+                <div class="ad-container ad-banner size-medium theme-dark">
+                    <div class="ad-banner">
+                        <img src="https://via.placeholder.com/600x300" alt="示例广告">
+                        <h3>示例广告标题</h3>
+                        <p>这是一段示例广告描述文本</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">
+                <pre><code>&lt;div class="ad-container ad-banner size-medium theme-dark"&gt;
+    &lt;div class="ad-banner"&gt;
+        &lt;img src="广告图片URL" alt="广告标题"&gt;
+        &lt;h3&gt;广告标题&lt;/h3&gt;
+        &lt;p&gt;广告描述文本&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+
+        <!-- 动画效果横幅广告 -->
+        <div class="demo-item">
+            <h2 class="demo-item-title">动画效果横幅广告</h2>
+            <div class="ad-container">
+                <div class="ad-container ad-banner size-medium animate-fade">
+                    <div class="ad-banner">
+                        <img src="https://via.placeholder.com/600x300" alt="示例广告">
+                        <h3>示例广告标题</h3>
+                        <p>这是一段示例广告描述文本</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">
+                <pre><code>&lt;div class="ad-container ad-banner size-medium animate-fade"&gt;
+    &lt;div class="ad-banner"&gt;
+        &lt;img src="广告图片URL" alt="广告标题"&gt;
+        &lt;h3&gt;广告标题&lt;/h3&gt;
+        &lt;p&gt;广告描述文本&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/embed/v1/ad-display.js"></script>
+    <script>
+        // 初始化广告
+        document.addEventListener('DOMContentLoaded', function() {
+            const adRenderer = new AdRenderer({
+                container: document.querySelector('.ad-container'),
+                adType: 'banner'
+            });
+
+            // 模拟广告数据
+            const adData = {
+                id: 'demo-ad-1',
+                title: '示例广告标题',
+                description: '这是一段示例广告描述文本',
+                imageUrl: 'https://via.placeholder.com/600x300'
+            };
+
+            // 加载广告
+            adRenderer.loadAd(adData);
+        });
+    </script>
+</body>
+</html> 

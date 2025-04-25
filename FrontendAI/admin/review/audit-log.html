@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 审核日志</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/components/cards.css">
+    <link rel="stylesheet" href="../../common/css/themes/admin-theme.css">
+    <link rel="stylesheet" href="audit-log.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/admin/review/ads-review">广告审核</a></li>
+                            <li><a href="/admin/review/content-pool">素材库</a></li>
+                            <li class="active"><a href="/admin/review/audit-log">审核日志</a></li>
+                            <li><a href="/admin/operations/analytics">运营管理</a></li>
+                            <li><a href="/admin/system/settings">系统管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">管理员</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/profile">个人资料</a></li>
+                                <li><a href="/admin/settings">系统设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>审核日志</h1>
+                    <div class="header-actions">
+                        <button class="btn" onclick="exportLogs()">导出日志</button>
+                    </div>
+                </div>
+
+                <!-- 筛选区域 -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label>操作类型</label>
+                        <select id="operationType" class="form-control">
+                            <option value="all">全部</option>
+                            <option value="create">创建</option>
+                            <option value="update">更新</option>
+                            <option value="delete">删除</option>
+                            <option value="approve">审核通过</option>
+                            <option value="reject">审核拒绝</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>操作人</label>
+                        <input type="text" id="operator" class="form-control" placeholder="输入操作人姓名">
+                    </div>
+                    <div class="filter-group">
+                        <label>时间范围</label>
+                        <select id="timeRange" class="form-control">
+                            <option value="today">今日</option>
+                            <option value="week">本周</option>
+                            <option value="month" selected>本月</option>
+                            <option value="quarter">本季度</option>
+                            <option value="year">本年</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="applyFilters()">搜索</button>
+                    <button class="btn" onclick="resetFilters()">重置</button>
+                </div>
+
+                <!-- 日志列表 -->
+                <div class="log-list">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="data-grid">
+                                <thead>
+                                    <tr>
+                                        <th>操作时间</th>
+                                        <th>操作类型</th>
+                                        <th>操作对象</th>
+                                        <th>操作人</th>
+                                        <th>IP地址</th>
+                                        <th>操作结果</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="logTableBody">
+                                    <!-- 数据将通过JavaScript动态加载 -->
+                                </tbody>
+                            </table>
+                            <div class="pagination">
+                                <button class="btn" onclick="prevPage()">上一页</button>
+                                <span class="page-info">第 <span id="currentPage">1</span> 页，共 <span id="totalPages">10</span> 页</span>
+                                <button class="btn" onclick="nextPage()">下一页</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 日志详情模态框 -->
+        <div class="modal" id="logDetailModal" style="display: none;">
+            <div class="modal-content">
+                <h2>日志详情</h2>
+                <div class="log-detail">
+                    <div class="detail-item">
+                        <label>操作时间：</label>
+                        <span id="detailTime"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>操作类型：</label>
+                        <span id="detailType"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>操作对象：</label>
+                        <span id="detailTarget"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>操作人：</label>
+                        <span id="detailOperator"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>IP地址：</label>
+                        <span id="detailIp"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>操作结果：</label>
+                        <span id="detailResult"></span>
+                    </div>
+                    <div class="detail-item">
+                        <label>备注：</label>
+                        <span id="detailRemark"></span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn" onclick="closeLogDetail()">关闭</button>
+                </div>
+                <button class="modal-close" onclick="closeLogDetail()">&times;</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="audit-log.js"></script>
+</body>
+</html> 

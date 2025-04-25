@@ -1,0 +1,257 @@
+/* 弹窗广告基础样式 */
+.ad-container.ad-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* 弹窗广告内容样式 */
+.ad-popup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 弹窗广告关闭按钮 */
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #666;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+/* 弹窗广告尺寸变体 */
+.ad-popup.size-small {
+    width: 300px;
+    min-height: 200px;
+}
+
+.ad-popup.size-medium {
+    width: 500px;
+    min-height: 300px;
+}
+
+.ad-popup.size-large {
+    width: 800px;
+    min-height: 400px;
+}
+
+/* 弹窗广告内容区域 */
+.popup-content {
+    padding: 24px;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+}
+
+/* 弹窗广告标题 */
+.popup-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px;
+}
+
+/* 弹窗广告图片 */
+.popup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+/* 弹窗广告描述 */
+.popup-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* 弹窗广告按钮 */
+.popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.popup-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.popup-btn-primary {
+    background: #1890ff;
+    color: #fff;
+    border: none;
+}
+
+.popup-btn-primary:hover {
+    background: #40a9ff;
+}
+
+.popup-btn-secondary {
+    background: #fff;
+    color: #666;
+    border: 1px solid #d9d9d9;
+}
+
+.popup-btn-secondary:hover {
+    color: #1890ff;
+    border-color: #1890ff;
+}
+
+/* 弹窗广告遮罩层 */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* 弹窗广告动画效果 */
+.popup-enter {
+    animation: popupEnter 0.3s ease-out;
+}
+
+.popup-exit {
+    animation: popupExit 0.3s ease-in;
+}
+
+@keyframes popupEnter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes popupExit {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+}
+
+/* 弹窗广告响应式设计 */
+@media (max-width: 768px) {
+    .ad-popup.size-medium {
+        width: 90%;
+        min-height: auto;
+    }
+
+    .ad-popup.size-large {
+        width: 95%;
+        min-height: auto;
+    }
+
+    .popup-content {
+        padding: 16px;
+    }
+
+    .popup-title {
+        font-size: 18px;
+    }
+
+    .popup-actions {
+        flex-direction: column;
+    }
+
+    .popup-btn {
+        width: 100%;
+    }
+}
+
+/* 弹窗广告加载状态 */
+.popup-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* 弹窗广告错误状态 */
+.popup-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    text-align: center;
+}
+
+.popup-error-icon {
+    font-size: 48px;
+    color: #ff4d4f;
+    margin-bottom: 16px;
+}
+
+.popup-error-message {
+    font-size: 16px;
+    color: #ff4d4f;
+    margin-bottom: 16px;
+}
+
+.popup-retry-btn {
+    background: #1890ff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.popup-retry-btn:hover {
+    background: #40a9ff;
+} 

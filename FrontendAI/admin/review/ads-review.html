@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 广告审核</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/data-grid.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/themes/admin-theme.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li class="active"><a href="/admin/review/ads-review">广告审核</a></li>
+                            <li><a href="/admin/review/content-pool">素材库</a></li>
+                            <li><a href="/admin/review/audit-log">审核日志</a></li>
+                            <li><a href="/admin/operations/ad-slots">运营管理</a></li>
+                            <li><a href="/admin/system/roles">系统管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">管理员</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/profile">个人资料</a></li>
+                                <li><a href="/admin/settings">系统设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>广告审核</h1>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <select class="form-control" id="statusFilter">
+                                <option value="">所有状态</option>
+                                <option value="pending">待审核</option>
+                                <option value="approved">已通过</option>
+                                <option value="rejected">已拒绝</option>
+                            </select>
+                            <select class="form-control" id="typeFilter">
+                                <option value="">所有类型</option>
+                                <option value="banner">横幅广告</option>
+                                <option value="video">视频广告</option>
+                                <option value="popup">弹窗广告</option>
+                            </select>
+                            <button class="btn" id="resetFilter">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 审核列表 -->
+                <div class="review-list">
+                    <table class="data-grid">
+                        <thead>
+                            <tr>
+                                <th>广告名称</th>
+                                <th>广告主</th>
+                                <th>类型</th>
+                                <th>提交时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="ad-info">
+                                        <img src="../../public/images/ads/sample1.jpg" alt="广告预览" class="ad-preview">
+                                        <div class="ad-details">
+                                            <h4>夏季促销活动</h4>
+                                            <p>活动时间: 2024-06-01 至 2024-08-31</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>示例广告主</td>
+                                <td>横幅广告</td>
+                                <td>2024-05-20 10:30</td>
+                                <td><span class="status pending">待审核</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-primary" onclick="showReviewModal(1)">审核</button>
+                                        <button class="btn btn-sm">查看详情</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ad-info">
+                                        <img src="../../public/images/ads/sample2.jpg" alt="广告预览" class="ad-preview">
+                                        <div class="ad-details">
+                                            <h4>新品上市推广</h4>
+                                            <p>活动时间: 2024-05-20 至 2024-06-20</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>示例广告主</td>
+                                <td>视频广告</td>
+                                <td>2024-05-19 14:20</td>
+                                <td><span class="status approved">已通过</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm">查看详情</button>
+                                        <button class="btn btn-sm">修改状态</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="btn" disabled>上一页</button>
+                    <span class="page-info">第 1 页，共 5 页</span>
+                    <button class="btn">下一页</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 审核模态框 -->
+        <div class="modal" id="reviewModal" style="display: none;">
+            <div class="modal-content">
+                <h2>广告审核</h2>
+                <div class="review-content">
+                    <div class="ad-preview-large">
+                        <img src="" alt="广告预览" id="modalAdPreview">
+                    </div>
+                    <div class="ad-details">
+                        <h3 id="modalAdTitle"></h3>
+                        <div class="detail-item">
+                            <span>广告主：</span>
+                            <span id="modalAdvertiser"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span>广告类型：</span>
+                            <span id="modalAdType"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span>活动时间：</span>
+                            <span id="modalAdDuration"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span>目标链接：</span>
+                            <a href="#" id="modalAdUrl" target="_blank">查看</a>
+                        </div>
+                    </div>
+                    <div class="review-form">
+                        <div class="form-group">
+                            <label class="form-label">审核结果</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="reviewResult" value="approved"> 通过
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="reviewResult" value="rejected"> 拒绝
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">审核意见</label>
+                            <textarea class="form-control" id="reviewComment" rows="3" placeholder="请输入审核意见..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="submitReview()">提交</button>
+                    <button class="btn" onclick="closeReviewModal()">取消</button>
+                </div>
+                <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../../common/js/libs/chart.js"></script>
+    <script src="ads-review.js"></script>
+</body>
+</html> 

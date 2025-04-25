@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 控制台</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/data-grid.css">
+    <link rel="stylesheet" href="../../common/css/themes/client-theme.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li class="active"><a href="/dashboard">控制台</a></li>
+                            <li><a href="/ads/list">广告管理</a></li>
+                            <li><a href="/finance/recharge">财务管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">广告主名称</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">个人资料</a></li>
+                                <li><a href="/settings">账户设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- 数据概览卡片 -->
+                    <div class="card">
+                        <h3>账户余额</h3>
+                        <div class="card-content">
+                            <p class="amount">? 10,000.00</p>
+                            <button class="btn btn-primary">充值</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>活跃广告</h3>
+                        <div class="card-content">
+                            <p class="number">5</p>
+                            <a href="/ads/list" class="btn">查看详情</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>今日展示</h3>
+                        <div class="card-content">
+                            <p class="number">1,234</p>
+                            <p class="trend up">+12%</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>今日点击</h3>
+                        <div class="card-content">
+                            <p class="number">56</p>
+                            <p class="trend down">-5%</p>
+                        </div>
+                    </div>
+
+                    <!-- 数据图表区域 -->
+                    <div class="chart-container">
+                        <h3>广告效果趋势</h3>
+                        <div id="performanceChart" class="chart"></div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>投放渠道分布</h3>
+                        <div id="channelChart" class="chart"></div>
+                    </div>
+
+                    <!-- 最近活动 -->
+                    <div class="recent-activity">
+                        <h3>最近活动</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-time">10:30</div>
+                                <div class="activity-content">
+                                    <p>广告"夏季促销"审核通过</p>
+                                    <span class="activity-status success">已通过</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-time">09:15</div>
+                                <div class="activity-content">
+                                    <p>账户充值 ?5,000.00</p>
+                                    <span class="activity-status success">已完成</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-time">昨天</div>
+                                <div class="activity-content">
+                                    <p>广告"新品上市"创建成功</p>
+                                    <span class="activity-status pending">待审核</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../../common/js/libs/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html> 

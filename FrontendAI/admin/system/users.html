@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 用户管理</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/data-grid.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/themes/admin-theme.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/admin/review/ads-review">广告审核</a></li>
+                            <li><a href="/admin/review/content-pool">素材库</a></li>
+                            <li><a href="/admin/review/audit-log">审核日志</a></li>
+                            <li><a href="/admin/operations/ad-slots">运营管理</a></li>
+                            <li class="active"><a href="/admin/system/users">系统管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">管理员</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/profile">个人资料</a></li>
+                                <li><a href="/admin/settings">系统设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>用户管理</h1>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <select class="form-control" id="roleFilter">
+                                <option value="">所有角色</option>
+                                <option value="admin">管理员</option>
+                                <option value="advertiser">广告主</option>
+                                <option value="operator">运营人员</option>
+                            </select>
+                            <select class="form-control" id="statusFilter">
+                                <option value="">所有状态</option>
+                                <option value="active">正常</option>
+                                <option value="disabled">禁用</option>
+                            </select>
+                            <button class="btn" id="resetFilter">重置</button>
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddUserModal()">添加用户</button>
+                    </div>
+                </div>
+
+                <!-- 用户列表 -->
+                <div class="user-list">
+                    <table class="data-grid">
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>邮箱</th>
+                                <th>角色</th>
+                                <th>注册时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="../../public/images/avatars/default.png" alt="用户头像" class="user-avatar">
+                                        <span>admin</span>
+                                    </div>
+                                </td>
+                                <td>admin@example.com</td>
+                                <td><span class="role-tag admin">管理员</span></td>
+                                <td>2024-01-01 00:00</td>
+                                <td><span class="status active">正常</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm" onclick="showEditUserModal(1)">编辑</button>
+                                        <button class="btn btn-sm btn-danger" onclick="showDisableUserModal(1)">禁用</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="btn" disabled>上一页</button>
+                    <span class="page-info">第 1 页，共 5 页</span>
+                    <button class="btn">下一页</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 添加/编辑用户模态框 -->
+        <div class="modal" id="userModal" style="display: none;">
+            <div class="modal-content">
+                <h2 id="modalTitle">添加用户</h2>
+                <form id="userForm" class="user-form">
+                    <div class="form-group">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">邮箱</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">密码</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">确认密码</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">角色</label>
+                        <select class="form-control" id="role" required>
+                            <option value="admin">管理员</option>
+                            <option value="advertiser">广告主</option>
+                            <option value="operator">运营人员</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn" onclick="closeUserModal()">取消</button>
+                    </div>
+                </form>
+                <button class="modal-close" onclick="closeUserModal()">&times;</button>
+            </div>
+        </div>
+
+        <!-- 禁用用户确认模态框 -->
+        <div class="modal" id="confirmModal" style="display: none;">
+            <div class="modal-content">
+                <h2>确认操作</h2>
+                <p id="confirmMessage">确定要禁用该用户吗？</p>
+                <div class="modal-actions">
+                    <button class="btn btn-danger" onclick="confirmAction()">确认</button>
+                    <button class="btn" onclick="closeConfirmModal()">取消</button>
+                </div>
+                <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="users.js"></script>
+</body>
+</html> 

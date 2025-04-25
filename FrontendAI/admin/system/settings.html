@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 系统设置</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/components/tabs.css">
+    <link rel="stylesheet" href="../../common/css/themes/admin-theme.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/admin/review/ads-review">广告审核</a></li>
+                            <li><a href="/admin/review/content-pool">素材库</a></li>
+                            <li><a href="/admin/review/audit-log">审核日志</a></li>
+                            <li><a href="/admin/operations/ad-slots">运营管理</a></li>
+                            <li class="active"><a href="/admin/system/settings">系统管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">管理员</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/profile">个人资料</a></li>
+                                <li><a href="/admin/settings">系统设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>系统设置</h1>
+                </div>
+
+                <!-- 设置选项卡 -->
+                <div class="settings-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="basic">基本设置</button>
+                        <button class="tab-btn" data-tab="ad-slots">广告位管理</button>
+                        <button class="tab-btn" data-tab="billing">计费规则</button>
+                    </div>
+
+                    <!-- 基本设置 -->
+                    <div class="tab-content active" id="basic-settings">
+                        <form id="basicSettingsForm" class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">平台名称</label>
+                                <input type="text" class="form-control" id="platformName" value="广告平台">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">平台Logo</label>
+                                <div class="logo-upload">
+                                    <img src="../../public/images/logos/logo.png" alt="当前Logo" class="current-logo">
+                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;">
+                                    <button type="button" class="btn" onclick="document.getElementById('logoUpload').click()">更换Logo</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">客服邮箱</label>
+                                <input type="email" class="form-control" id="supportEmail" value="support@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">客服电话</label>
+                                <input type="tel" class="form-control" id="supportPhone" value="400-123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">工作时间</label>
+                                <input type="text" class="form-control" id="workingHours" value="周一至周五 9:00-18:00">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">保存设置</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 广告位管理 -->
+                    <div class="tab-content" id="ad-slots-settings">
+                        <div class="ad-slots-header">
+                            <button class="btn btn-primary" onclick="showAddSlotModal()">添加广告位</button>
+                        </div>
+                        <div class="ad-slots-list">
+                            <table class="data-grid">
+                                <thead>
+                                    <tr>
+                                        <th>广告位名称</th>
+                                        <th>尺寸</th>
+                                        <th>类型</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>首页横幅</td>
+                                        <td>1200x200</td>
+                                        <td>图片</td>
+                                        <td><span class="status active">启用</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm" onclick="showEditSlotModal(1)">编辑</button>
+                                                <button class="btn btn-sm btn-danger" onclick="showDisableSlotModal(1)">禁用</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 计费规则 -->
+                    <div class="tab-content" id="billing-settings">
+                        <form id="billingSettingsForm" class="settings-form">
+                            <div class="form-group">
+                                <label class="form-label">CPC计费（元/点击）</label>
+                                <input type="number" class="form-control" id="cpcRate" value="0.5" min="0" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">CPM计费（元/千次展示）</label>
+                                <input type="number" class="form-control" id="cpmRate" value="10" min="0" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">最低充值金额（元）</label>
+                                <input type="number" class="form-control" id="minRecharge" value="100" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">提现手续费率（%）</label>
+                                <input type="number" class="form-control" id="withdrawFee" value="1" min="0" max="100" step="0.1">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">保存设置</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 添加/编辑广告位模态框 -->
+        <div class="modal" id="slotModal" style="display: none;">
+            <div class="modal-content">
+                <h2 id="slotModalTitle">添加广告位</h2>
+                <form id="slotForm" class="settings-form">
+                    <div class="form-group">
+                        <label class="form-label">广告位名称</label>
+                        <input type="text" class="form-control" id="slotName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">尺寸</label>
+                        <div class="dimension-inputs">
+                            <input type="number" class="form-control" id="slotWidth" placeholder="宽度" required>
+                            <span>x</span>
+                            <input type="number" class="form-control" id="slotHeight" placeholder="高度" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">类型</label>
+                        <select class="form-control" id="slotType" required>
+                            <option value="image">图片</option>
+                            <option value="video">视频</option>
+                            <option value="text">文字</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">描述</label>
+                        <textarea class="form-control" id="slotDescription" rows="3"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn" onclick="closeSlotModal()">取消</button>
+                    </div>
+                </form>
+                <button class="modal-close" onclick="closeSlotModal()">&times;</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html> 

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 运营数据</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/components/cards.css">
+    <link rel="stylesheet" href="../../common/css/themes/admin-theme.css">
+    <link rel="stylesheet" href="analytics.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/admin/review/ads-review">广告审核</a></li>
+                            <li><a href="/admin/review/content-pool">素材库</a></li>
+                            <li><a href="/admin/review/audit-log">审核日志</a></li>
+                            <li class="active"><a href="/admin/operations/analytics">运营管理</a></li>
+                            <li><a href="/admin/system/settings">系统管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">管理员</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/profile">个人资料</a></li>
+                                <li><a href="/admin/settings">系统设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>运营数据统计</h1>
+                    <div class="header-actions">
+                        <button class="btn" onclick="exportData()">导出数据</button>
+                    </div>
+                </div>
+
+                <!-- 数据概览卡片 -->
+                <div class="overview-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>总营收</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stat-value">? 1,234,567</div>
+                            <div class="stat-change positive">+12.5%</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>广告主数量</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stat-value">1,234</div>
+                            <div class="stat-change positive">+5.2%</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>广告位数量</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stat-value">56</div>
+                            <div class="stat-change">0%</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>平均点击率</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stat-value">2.5%</div>
+                            <div class="stat-change negative">-0.3%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据筛选 -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label>时间范围</label>
+                        <select id="timeRange" class="form-control">
+                            <option value="today">今日</option>
+                            <option value="week">本周</option>
+                            <option value="month" selected>本月</option>
+                            <option value="quarter">本季度</option>
+                            <option value="year">本年</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>广告类型</label>
+                        <select id="adType" class="form-control">
+                            <option value="all">全部</option>
+                            <option value="image">图片广告</option>
+                            <option value="video">视频广告</option>
+                            <option value="text">文字广告</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>广告位</label>
+                        <select id="adSlot" class="form-control">
+                            <option value="all">全部</option>
+                            <option value="home">首页</option>
+                            <option value="list">列表页</option>
+                            <option value="detail">详情页</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="applyFilters()">应用筛选</button>
+                </div>
+
+                <!-- 趋势图表 -->
+                <div class="chart-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>营收趋势</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="revenueChart" class="chart-container"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>点击量趋势</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="clicksChart" class="chart-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 详细数据表格 -->
+                <div class="data-table-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>详细数据</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="data-grid">
+                                <thead>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>广告位</th>
+                                        <th>广告类型</th>
+                                        <th>展示量</th>
+                                        <th>点击量</th>
+                                        <th>点击率</th>
+                                        <th>收入</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataTableBody">
+                                    <!-- 数据将通过JavaScript动态加载 -->
+                                </tbody>
+                            </table>
+                            <div class="pagination">
+                                <button class="btn" onclick="prevPage()">上一页</button>
+                                <span class="page-info">第 <span id="currentPage">1</span> 页，共 <span id="totalPages">10</span> 页</span>
+                                <button class="btn" onclick="nextPage()">下一页</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html> 

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>????? - งน??????</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/data-grid.css">
+    <link rel="stylesheet" href="../../common/css/themes/client-theme.css">
+    <link rel="stylesheet" href="ads.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="?????">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/dashboard">?????</a></li>
+                            <li class="active"><a href="/ads/list">??????</a></li>
+                            <li><a href="/finance/recharge">???????</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">?????????</span>
+                        <div class="dropdown">
+                            <button class="btn">????</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">????????</a></li>
+                                <li><a href="/settings">???????</a></li>
+                                <li><a href="/logout">??????</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>???งน??????</h1>
+                    <div class="header-actions">
+                        <div class="date-range">
+                            <input type="date" class="form-control" id="startDate">
+                            <span>??</span>
+                            <input type="date" class="form-control" id="endDate">
+                            <button class="btn btn-primary" id="applyDateRange">???</button>
+                        </div>
+                        <a href="/ads/list" class="btn">?????งา?</a>
+                    </div>
+                </div>
+
+                <!-- ?????? -->
+                <div class="ad-overview">
+                    <div class="ad-info-card">
+                        <img src="../../public/images/ads/sample1.jpg" alt="??????" class="ad-preview">
+                        <div class="ad-details">
+                            <h2>?????????</h2>
+                            <p>?????: 2024-06-01 ?? 2024-08-31</p>
+                            <p>???????: ??????</p>
+                            <p>??: <span class="status running">?????</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ??????? -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>??????</h3>
+                        <p class="metric-value">10,234</p>
+                        <p class="metric-trend up">+12%</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>??????</h3>
+                        <p class="metric-value">256</p>
+                        <p class="metric-trend up">+8%</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>?????</h3>
+                        <p class="metric-value">2.5%</p>
+                        <p class="metric-trend down">-0.3%</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>?????</h3>
+                        <p class="metric-value">1.2%</p>
+                        <p class="metric-trend up">+0.5%</p>
+                    </div>
+                </div>
+
+                <!-- ??????? -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>??????????????</h3>
+                        <div id="impressionsChart" class="chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>????????????????</h3>
+                        <div id="conversionChart" class="chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>??????????</h3>
+                        <div id="channelChart" class="chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>????????????</h3>
+                        <div id="audienceChart" class="chart"></div>
+                    </div>
+                </div>
+
+                <!-- ?????????? -->
+                <div class="data-table-section">
+                    <h3>???????</h3>
+                    <div class="table-filters">
+                        <select class="form-control" id="dataGrouping">
+                            <option value="daily">????</option>
+                            <option value="weekly">????</option>
+                            <option value="monthly">????</option>
+                        </select>
+                        <button class="btn" id="exportData">????????</button>
+                    </div>
+                    <table class="data-grid">
+                        <thead>
+                            <tr>
+                                <th>????</th>
+                                <th>????</th>
+                                <th>?????</th>
+                                <th>?????</th>
+                                <th>?????</th>
+                                <th>?????</th>
+                                <th>????</th>
+                                <th>CPC</th>
+                                <th>CPM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-05-20</td>
+                                <td>1,234</td>
+                                <td>32</td>
+                                <td>2.6%</td>
+                                <td>4</td>
+                                <td>12.5%</td>
+                                <td>?64.00</td>
+                                <td>?2.00</td>
+                                <td>?0.05</td>
+                            </tr>
+                            <tr>
+                                <td>2024-05-19</td>
+                                <td>1,156</td>
+                                <td>28</td>
+                                <td>2.4%</td>
+                                <td>3</td>
+                                <td>10.7%</td>
+                                <td>?56.00</td>
+                                <td>?2.00</td>
+                                <td>?0.05</td>
+                            </tr>
+                            <tr>
+                                <td>2024-05-18</td>
+                                <td>1,089</td>
+                                <td>25</td>
+                                <td>2.3%</td>
+                                <td>3</td>
+                                <td>12.0%</td>
+                                <td>?50.00</td>
+                                <td>?2.00</td>
+                                <td>?0.05</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 ?????. ???????????.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../../common/js/libs/chart.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html> 

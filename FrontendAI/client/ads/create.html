@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告平台 - 创建广告</title>
+    <link rel="stylesheet" href="../../common/css/base.css">
+    <link rel="stylesheet" href="../../common/css/components/forms.css">
+    <link rel="stylesheet" href="../../common/css/themes/client-theme.css">
+    <link rel="stylesheet" href="ads.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="../../public/images/logos/logo.png" alt="广告平台">
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/dashboard">控制台</a></li>
+                            <li class="active"><a href="/ads/list">广告管理</a></li>
+                            <li><a href="/finance/recharge">财务管理</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu">
+                        <span class="username">广告主名称</span>
+                        <div class="dropdown">
+                            <button class="btn">设置</button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">个人资料</a></li>
+                                <li><a href="/settings">账户设置</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>创建广告</h1>
+                    <a href="/ads/list" class="btn">返回列表</a>
+                </div>
+
+                <form id="createAdForm" class="ad-form">
+                    <!-- 基本信息 -->
+                    <div class="form-section">
+                        <h2>基本信息</h2>
+                        <div class="form-group">
+                            <label class="form-label">广告名称</label>
+                            <input type="text" class="form-control" name="adName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">广告类型</label>
+                            <select class="form-control" name="adType" required>
+                                <option value="">请选择广告类型</option>
+                                <option value="banner">横幅广告</option>
+                                <option value="video">视频广告</option>
+                                <option value="popup">弹窗广告</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">广告描述</label>
+                            <textarea class="form-control" name="adDescription" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 投放设置 -->
+                    <div class="form-section">
+                        <h2>投放设置</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">开始时间</label>
+                                <input type="datetime-local" class="form-control" name="startTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">结束时间</label>
+                                <input type="datetime-local" class="form-control" name="endTime" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">每日预算</label>
+                            <div class="input-group">
+                                <span class="input-group-text">?</span>
+                                <input type="number" class="form-control" name="dailyBudget" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">总预算</label>
+                            <div class="input-group">
+                                <span class="input-group-text">?</span>
+                                <input type="number" class="form-control" name="totalBudget" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 广告素材 -->
+                    <div class="form-section">
+                        <h2>广告素材</h2>
+                        <div class="form-group">
+                            <label class="form-label">广告标题</label>
+                            <input type="text" class="form-control" name="adTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">广告文案</label>
+                            <textarea class="form-control" name="adCopy" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">广告图片</label>
+                            <div class="upload-area" id="imageUpload">
+                                <div class="upload-placeholder">
+                                    <i class="upload-icon"></i>
+                                    <p>点击或拖拽图片到此处上传</p>
+                                    <p class="upload-hint">支持 JPG、PNG 格式，大小不超过 2MB</p>
+                                </div>
+                                <input type="file" class="upload-input" accept="image/*" required>
+                            </div>
+                            <div class="preview-area" id="imagePreview" style="display: none;">
+                                <img src="" alt="广告预览" class="preview-image">
+                                <button type="button" class="btn btn-sm remove-image">删除</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">目标链接</label>
+                            <input type="url" class="form-control" name="targetUrl" placeholder="https://" required>
+                        </div>
+                    </div>
+
+                    <!-- 定向设置 -->
+                    <div class="form-section">
+                        <h2>定向设置</h2>
+                        <div class="form-group">
+                            <label class="form-label">投放地区</label>
+                            <select class="form-control" name="regions" multiple>
+                                <option value="beijing">北京</option>
+                                <option value="shanghai">上海</option>
+                                <option value="guangzhou">广州</option>
+                                <option value="shenzhen">深圳</option>
+                                <option value="other">其他地区</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">受众年龄</label>
+                            <div class="age-range">
+                                <input type="number" class="form-control" name="minAge" min="18" max="65" placeholder="最小年龄">
+                                <span>至</span>
+                                <input type="number" class="form-control" name="maxAge" min="18" max="65" placeholder="最大年龄">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">兴趣标签</label>
+                            <div class="tag-selector">
+                                <div class="tag-options">
+                                    <label class="tag-option">
+                                        <input type="checkbox" name="interests" value="fashion"> 时尚
+                                    </label>
+                                    <label class="tag-option">
+                                        <input type="checkbox" name="interests" value="sports"> 运动
+                                    </label>
+                                    <label class="tag-option">
+                                        <input type="checkbox" name="interests" value="technology"> 科技
+                                    </label>
+                                    <label class="tag-option">
+                                        <input type="checkbox" name="interests" value="food"> 美食
+                                    </label>
+                                    <label class="tag-option">
+                                        <input type="checkbox" name="interests" value="travel"> 旅游
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">创建广告</button>
+                        <button type="button" class="btn" onclick="window.location.href='/ads/list'">取消</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>? 2024 广告平台. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="create.js"></script>
+</body>
+</html> 

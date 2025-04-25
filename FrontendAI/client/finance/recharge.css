@@ -1,0 +1,304 @@
+/* 页面头部样式 */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* 账户信息卡片 */
+.account-info {
+    background: #fff;
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.balance-display {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.balance-details {
+    display: flex;
+    gap: 24px;
+    color: var(--text-color-secondary);
+}
+
+.balance-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.balance-detail-item span:first-child {
+    font-size: 12px;
+}
+
+.balance-detail-item span:last-child {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* 充值表单样式 */
+.recharge-form {
+    background: #fff;
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--text-color);
+}
+
+/* 支付方式选择 */
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.payment-method {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-method:hover {
+    border-color: var(--primary-color);
+}
+
+.payment-method.selected {
+    border-color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.1);
+}
+
+.payment-method input {
+    display: none;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.payment-method-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* 发票选项 */
+.invoice-options {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.invoice-option {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.invoice-option:hover {
+    border-color: var(--primary-color);
+}
+
+.invoice-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.1);
+}
+
+.invoice-option input {
+    display: none;
+}
+
+.invoice-option label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* 金额输入 */
+.amount-input {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.amount-input .input-group {
+    display: flex;
+    align-items: center;
+}
+
+.amount-input .input-group-text {
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.amount-input input {
+    border-radius: 0 4px 4px 0;
+}
+
+.amount-hint {
+    font-size: 12px;
+    color: var(--text-color-secondary);
+    margin-top: 4px;
+}
+
+/* 表单操作按钮 */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+/* 充值指南 */
+.recharge-guide {
+    background: #fff;
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 24px;
+}
+
+.recharge-guide h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--text-color);
+}
+
+.guide-item {
+    margin-bottom: 16px;
+}
+
+.guide-item h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.guide-item p {
+    font-size: 12px;
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+
+/* 模态框样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color-secondary);
+}
+
+.bank-transfer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bank-transfer-info h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.info-item {
+    display: flex;
+    gap: 8px;
+}
+
+.info-item span:first-child {
+    color: var(--text-color-secondary);
+    min-width: 80px;
+}
+
+.notice {
+    font-size: 12px;
+    color: var(--warning-color);
+    margin-top: 16px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .invoice-options {
+        flex-direction: column;
+    }
+
+    .balance-details {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+} 

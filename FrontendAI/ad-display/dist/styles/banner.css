@@ -1,0 +1,139 @@
+/* 横幅广告基础样式 */
+.ad-container.ad-banner {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 横幅广告内容样式 */
+.ad-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+}
+
+.ad-banner img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.ad-banner h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px;
+}
+
+.ad-banner p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 横幅广告尺寸变体 */
+.ad-banner.size-small {
+    max-width: 300px;
+}
+
+.ad-banner.size-medium {
+    max-width: 600px;
+}
+
+.ad-banner.size-large {
+    max-width: 900px;
+}
+
+/* 横幅广告主题变体 */
+.ad-banner.theme-light {
+    background: #f8f9fa;
+}
+
+.ad-banner.theme-dark {
+    background: #343a40;
+}
+
+.ad-banner.theme-dark h3 {
+    color: #fff;
+}
+
+.ad-banner.theme-dark p {
+    color: #dee2e6;
+}
+
+/* 横幅广告动画效果 */
+.ad-banner.animate-fade {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.ad-banner.animate-slide {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 横幅广告响应式设计 */
+@media (max-width: 768px) {
+    .ad-banner {
+        padding: 12px;
+    }
+
+    .ad-banner h3 {
+        font-size: 16px;
+    }
+
+    .ad-banner p {
+        font-size: 13px;
+    }
+}
+
+/* 横幅广告加载状态 */
+.ad-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 横幅广告错误状态 */
+.ad-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    color: #dc3545;
+    font-size: 14px;
+    text-align: center;
+    padding: 16px;
+} 
